@@ -42,4 +42,4 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           ls ./output/*.nupkg
-          nuget push ./output/*.nupkg -Source "GitHub"
+          nuget push "D:\a\WpfExtendedDataGrid\WpfExtendedDataGrid\output\ExtendedGrid.4.8.0.nupkg" -Source "GitHub"
