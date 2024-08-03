@@ -27,7 +27,8 @@ jobs:
 
       - name: Build
         run: |
-          & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe" "`"${{ env.SOLUTION_FILE_PATH }}"`" /p:Configuration=Release
+          $msbuild = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
+          & $msbuild "${{ env.SOLUTION_FILE_PATH }}" /p:Configuration=Release
 
       - name: Pack
         run: nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
