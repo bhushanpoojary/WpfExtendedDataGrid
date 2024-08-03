@@ -19,10 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET Framework
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '4.8.0'
+          dotnet-version: '4.8.x' # Use this to specify the .NET SDK version that supports .NET Framework 4.8
 
       - name: Install NuGet CLI
         run: choco install nuget.commandline
