@@ -37,9 +37,9 @@ jobs:
 
       - name: Set up NuGet for GitHub Packages
         run: |
-          nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -Username ${{ github.actor }} -Password ${{ secrets.GITHUB_TOKEN }}
+          nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -Username ${{ github.actor }} -Password ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish to GitHub Packages
         run: |
           ls ./output/*.nupkg
-          nuget push "D:\a\WpfExtendedDataGrid\WpfExtendedDataGrid\output\ExtendedGrid.4.8.0.nupkg" -Source "GitHub"
+          nuget push ./output/*.nupkg -Source "GitHub" -ApiKey ${{ secrets.NUGET_API_KEY }}
