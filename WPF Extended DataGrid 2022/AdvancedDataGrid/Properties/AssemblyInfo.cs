@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Test Client")]
 [assembly: AssemblyDescription("Test Client")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dexter")]
+[assembly: AssemblyCompany("Bhushan Poojary")]
 [assembly: AssemblyProduct("Column Chooser")]
-[assembly: AssemblyCopyright("Copyright © Dexter 2011")]
+[assembly: AssemblyCopyright("Copyright © Bhushan Poojary 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
