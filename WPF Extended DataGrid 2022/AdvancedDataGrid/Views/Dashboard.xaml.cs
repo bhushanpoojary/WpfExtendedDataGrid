@@ -1,4 +1,5 @@
 ﻿using MultiEventCommand.ViewModels;
+using System.Windows;
 
 namespace MultiEventCommand.Views
 {
@@ -16,6 +17,9 @@ namespace MultiEventCommand.Views
             
         }
 
-      
+        private void RibbonWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Title = "WPF Extended DataGrid " + System.Windows.Forms.Application.ProductVersion;
+        }
     }
 }

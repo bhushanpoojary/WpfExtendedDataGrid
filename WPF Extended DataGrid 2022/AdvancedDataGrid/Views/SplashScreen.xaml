@@ -9,7 +9,7 @@
     <Grid >
         <Image  Height="80"  Source="../Images/wpfed.png"  Margin="0,-100,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
         <CustomControls:ReflectionControl HorizontalAlignment="Center" Margin="0,-10,0,0" VerticalAlignment="Center">
-            <TextBlock Background="Transparent" FontSize="10" FontWeight="Bold" Foreground="#31538C">WPF Extended DataGrid 4.0</TextBlock>
+            <TextBlock Background="Transparent" FontSize="10" FontWeight="Bold" Foreground="#31538C">WPF Extended DataGrid 4.8</TextBlock>
         </CustomControls:ReflectionControl>
         <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="-50,40,0,0" VerticalAlignment="Center">Version:</TextBlock>
         <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="45,40,0,0" Name="txtVersion" VerticalAlignment="Center">1.0.0.0</TextBlock>

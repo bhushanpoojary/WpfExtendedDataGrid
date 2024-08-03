@@ -82,10 +82,7 @@ namespace MultiEventCommand.Views
 
         private void WindowLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
-                txtVersion.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-            else
-                txtVersion.Text = Application.ProductVersion;
+            txtVersion.Text = System.Windows.Forms.Application.ProductVersion;
         }
 
         #region INotifyPropertyChanged Members
