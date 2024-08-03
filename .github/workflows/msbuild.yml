@@ -31,11 +31,15 @@ jobs:
           & $msbuild "${{ env.SOLUTION_FILE_PATH }}" /p:Configuration=Release
 
       - name: Pack
-        run: nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
+        run: |
+          nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
+          ls ./output
 
       - name: Set up NuGet for GitHub Packages
         run: |
           nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -Username ${{ github.actor }} -Password ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Packages
-        run: nuget push ./output/*.nupkg -Source "GitHub"
+        run: |
+          ls ./output/*.nupkg
+          nuget push ./output/*.nupkg -Source "GitHub"
