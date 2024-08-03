@@ -18,7 +18,7 @@
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
     <!-- NuGet package properties -->
-    <PackageId>ExtendedGrid</PackageId>
+    <PackageId>WpfExtendedDataGrid</PackageId>
     <Version>4.8.0</Version>
     <Authors>Bhushan Poojary</Authors>
     <Description>WPF Extended DataGrid</Description>
