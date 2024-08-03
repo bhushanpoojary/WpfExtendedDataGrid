@@ -1,0 +1,87 @@
+# Ignore Visual Studio temporary files, build results, and
+# common Node.js folders.
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono)
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Chutzpah Test files
+_Chutzpah/
+
+# Visual Studio 2022
+.vs/ (keeps project-specific information such as open files)
+/WPF Extended DataGrid 2022/.vs/
+/WPF Extended DataGrid 2022/packages/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Common node modules
+node_modules/
+
+# VS Code directories
+.vscode/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Project-specific ignore patterns
+App_Data/
+
+# Files built by Visual Studio
+*.dbmdl
+*.dbproj.schemaview
+*.pfx
+*.publishsettings
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# TFS-specific ignore patterns
+$tf/
+
+# Visual Studio Code directory
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of `.gitignore` file
