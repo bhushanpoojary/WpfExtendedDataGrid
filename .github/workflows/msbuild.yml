@@ -1,44 +1,38 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: MSBuild
+name: Build and Publish NuGet Package
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-env:
-  # Path to the solution file relative to the root of the project.
-  SOLUTION_FILE_PATH: 'WPF Extended DataGrid 2022/WpfControlKit DataGrid 2022.sln'
-
-  # Configuration type to build.
-  # You can convert this to a build matrix if you need coverage of multiple configuration types.
-  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-  BUILD_CONFIGURATION: Release
-
-permissions:
-  contents: read
+    tags:
+      - 'v*'
 
 jobs:
   build:
     runs-on: windows-latest
 
+    env:
+      # Define the solution file path relative to the repository root
+      SOLUTION_FILE_PATH: 'WPF Extended DataGrid 2022/WpfControlKit DataGrid 2022.sln'
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '4.8.0'
 
-    - name: Restore NuGet packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+      - name: Install NuGet CLI
+        run: choco install nuget.commandline
 
-    - name: Build
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+      - name: Restore dependencies
+        run: nuget restore ${{ env.SOLUTION_FILE_PATH }}
+
+      - name: Build
+        run: msbuild ${{ env.SOLUTION_FILE_PATH }} /p:Configuration=Release
+
+      - name: Pack
+        run: nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
+
+      - name: Publish to GitHub Packages
+        run: nuget push ./output/*.nupkg -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -ApiKey ${{ secrets.GITHUB_TOKEN }}
