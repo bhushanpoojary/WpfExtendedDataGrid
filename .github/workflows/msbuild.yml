@@ -22,9 +22,6 @@ jobs:
       - name: Install NuGet CLI
         run: choco install nuget.commandline
 
-      - name: Install Office Interop Packages
-        run: nuget install Microsoft.Office.Interop.Excel -Version 15.0.4795.1000 -OutputDirectory packages
-
       - name: Restore dependencies
         run: nuget restore "${{ env.SOLUTION_FILE_PATH }}"
 
