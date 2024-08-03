@@ -10,31 +10,25 @@ namespace MultiEventCommand.ViewModels
     {
         #region Members
 
-        private RelayCommand _codeplexCommand;
+        private RelayCommand _gitHubCommand;
 
         #endregion
 
         #region Commands
 
-
-
-        public RelayCommand CodePlexCommand
+        public RelayCommand GitHubCommandCommand
         {
-            get { return _codeplexCommand ?? (_codeplexCommand = new RelayCommand(CodePlexCommandHandler)); }
-            set { _codeplexCommand = value; }
+            get { return _gitHubCommand ?? (_gitHubCommand = new RelayCommand(GitHubCommandHandler)); }
+            set { _gitHubCommand = value; }
         }
-
-       
-
-
 
         #endregion
 
         #region Handlers
 
-        private void CodePlexCommandHandler()
+        private void GitHubCommandHandler()
         {
-            Process.Start("http://columnchooser.codeplex.com/");
+            Process.Start("https://github.com/bhushanpoojary/WpfExtendedDataGrid");
         }
 
         #endregion
