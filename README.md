@@ -21,3 +21,7 @@ WPF Extended Datagrid
 - Row Summaries (Supports DataTable as datasource)
 - Themes
 - Saving and Restoring Column Information
+
+## Wiki https://github.com/bhushanpoojary/WpfExtendedDataGrid/wiki
+
+## For sample please run DataGridTestClient
