@@ -8,8 +8,8 @@
     <ProjectGuid>{EF568126-A1D2-49CF-A2C1-1EDB8DFC3E40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtendedGrid</RootNamespace>
-    <AssemblyName>ExtendedGrid</AssemblyName>
+    <RootNamespace>WpfExtendedDataGrid</RootNamespace>
+    <AssemblyName>WpfExtendedDataGrid</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

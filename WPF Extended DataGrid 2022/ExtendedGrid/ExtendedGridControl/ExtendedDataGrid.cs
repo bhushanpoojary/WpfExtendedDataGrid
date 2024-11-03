@@ -28,15 +28,15 @@ namespace ExtendedGrid.ExtendedGridControl
     {
         #region Members
 
-        private static readonly Uri DataGridUri = new Uri("/ExtendedGrid;component/Styles/DataGrid.Generic.xaml",
+        private static readonly Uri DataGridUri = new Uri("/WpfExtendedDataGrid;component/Styles/DataGrid.Generic.xaml",
                                                           UriKind.Relative);
 
         private readonly ResourceDictionary _dataGridUriStyle = new ResourceDictionary {Source = DataGridUri};
 
-        private static readonly Uri DefaultThemeUri = new Uri("/ExtendedGrid;component/DataGridThemes/Default.xaml",
+        private static readonly Uri DefaultThemeUri = new Uri("/WpfExtendedDataGrid;component/DataGridThemes/Default.xaml",
                                                               UriKind.Relative);
 
-        private const string GenericThemeUri = "/ExtendedGrid;component/DataGridThemes/{0}.xaml";
+        private const string GenericThemeUri = "/WpfExtendedDataGrid;component/DataGridThemes/{0}.xaml";
         private readonly ResourceDictionary _defaultGridTheme = new ResourceDictionary {Source = DefaultThemeUri};
         private DataTable _rowSummariesTable = new DataTable();
         private ObservableCollection<GroupByData> _groupByCollection = new ObservableCollection<GroupByData>();

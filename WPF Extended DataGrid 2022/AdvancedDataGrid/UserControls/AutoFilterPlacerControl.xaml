@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:UserControls="clr-namespace:TestClient.UserControls"
-             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
-             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid" mc:Ignorable="d" 
+             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=WpfExtendedDataGrid"
+             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=WpfExtendedDataGrid" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>

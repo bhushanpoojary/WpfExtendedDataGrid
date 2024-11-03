@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
-             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
+             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=WpfExtendedDataGrid"
+             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=WpfExtendedDataGrid"
              xmlns:UserControls="clr-namespace:TestClient.UserControls" mc:Ignorable="d" Loaded="UserControlLoaded"
              d:DesignHeight="600" d:DesignWidth="600">
     <UserControl.Resources>
