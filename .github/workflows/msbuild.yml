@@ -32,7 +32,7 @@ jobs:
 
       - name: Pack
         run: |
-          nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
+          nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release;PackageId=WpfExtendedDataGrid -OutputDirectory ./output
           dir ./output
 
       - name: Set up NuGet for NuGet.org
