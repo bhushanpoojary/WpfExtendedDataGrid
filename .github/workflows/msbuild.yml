@@ -22,7 +22,6 @@ jobs:
       - name: Install NuGet CLI
         run: choco install nuget.commandline
 
-
       - name: Restore dependencies
         run: nuget restore "${{ env.SOLUTION_FILE_PATH }}"
 
@@ -36,11 +35,11 @@ jobs:
           nuget pack "WPF Extended DataGrid 2022/ExtendedGrid/ExtendedGrid.csproj" -Prop Configuration=Release -OutputDirectory ./output
           dir ./output
 
-      - name: Set up NuGet for GitHub Packages
+      - name: Set up NuGet for NuGet.org
         run: |
-          nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -Username ${{ github.actor }} -Password ${{ secrets.NUGET_API_KEY }}
+          nuget sources Add -Name "NuGet.org" -Source "https://api.nuget.org/v3/index.json" -Username ${{ github.actor }} -Password ${{ secrets.NUGET_API_KEY }}
 
-      - name: Publish to GitHub Packages
+      - name: Publish to NuGet.org
         run: |
           $package = Get-ChildItem -Path ./output -Filter *.nupkg | Select-Object -First 1
-          nuget push $package.FullName -Source "GitHub" -ApiKey ${{ secrets.NUGET_API_KEY }}
+          nuget push $package.FullName -Source "https://api.nuget.org/v3/index.json" -ApiKey ${{ secrets.NUGET_API_KEY }}
