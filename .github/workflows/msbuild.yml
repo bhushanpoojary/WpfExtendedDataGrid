@@ -28,23 +28,23 @@ jobs:
           foreach ($file in $files) {
             $content = Get-Content $file.PSPath
 
-          # Increment AssemblyVersion
-          $content = $content -replace 'AssemblyVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
-          param($all, $prefix, $revision)
-          $newRevision = [int]$revision + 1
-          "AssemblyVersion(`"$prefix$newRevision`")"
-        }
+            # Increment AssemblyVersion
+            $content = $content -replace 'AssemblyVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
+              param($all, $prefix, $revision)
+              $newRevision = [int]$revision + 1
+              "AssemblyVersion(`"$prefix$newRevision`")"
+            }
 
-        # Increment AssemblyFileVersion
-        $content = $content -replace 'AssemblyFileVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
-        param($all, $prefix, $revision)
-        $newRevision = [int]$revision + 1
-        "AssemblyFileVersion(`"$prefix$newRevision`")"
-        }
+            # Increment AssemblyFileVersion
+            $content = $content -replace 'AssemblyFileVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
+              param($all, $prefix, $revision)
+              $newRevision = [int]$revision + 1
+              "AssemblyFileVersion(`"$prefix$newRevision`")"
+            }
 
-        # Save the modified content back to the file
-        Set-Content -Path $file.PSPath -Value $content
-        }
+            # Save the modified content back to the file
+            Set-Content -Path $file.PSPath -Value $content
+          }
 
       - name: Commit version increment
         env:
