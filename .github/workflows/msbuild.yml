@@ -27,24 +27,38 @@ jobs:
           $files = Get-ChildItem -Path . -Filter AssemblyInfo.cs -Recurse
           foreach ($file in $files) {
             $content = Get-Content $file.PSPath
+            $updatedContent = @()
 
-            # Increment the build number in AssemblyVersion
-            $content = $content -replace 'AssemblyVersion\("(\d+\.\d+\.)(\d+)(\.\d+)"\)', {
-              param($all, $majorMinor, $build, $revision)
-              $newBuild = [int]$build + 1
-              "AssemblyVersion(`"$majorMinor$newBuild$revision`")"
-            }
-
-            # Increment the build number in AssemblyFileVersion
-            $content = $content -replace 'AssemblyFileVersion\("(\d+\.\d+\.)(\d+)(\.\d+)"\)', {
-              param($all, $majorMinor, $build, $revision)
-              $newBuild = [int]$build + 1
-              "AssemblyFileVersion(`"$majorMinor$newBuild$revision`")"
+            foreach ($line in $content) {
+              if ($line -match 'AssemblyVersion\("(\d+)\.(\d+)\.(\d+)\.(\d+)"\)') {
+                $major = $matches[1]
+                $minor = $matches[2]
+                $build = [int]$matches[3] + 1  # Increment the build number
+                $revision = $matches[4]
+                $newLine = "[assembly: AssemblyVersion(`"$major.$minor.$build.$revision`")]"
+                Write-Output "Updated AssemblyVersion: $newLine"
+                $updatedContent += $newLine
+              }
+              elseif ($line -match 'AssemblyFileVersion\("(\d+)\.(\d+)\.(\d+)\.(\d+)"\)') {
+                $major = $matches[1]
+                $minor = $matches[2]
+                $build = [int]$matches[3] + 1  # Increment the build number
+                $revision = $matches[4]
+                $newLine = "[assembly: AssemblyFileVersion(`"$major.$minor.$build.$revision`")]"
+                Write-Output "Updated AssemblyFileVersion: $newLine"
+                $updatedContent += $newLine
+              }
+              else {
+                $updatedContent += $line
+              }
             }
 
             # Save the modified content back to the file
-            Set-Content -Path $file.PSPath -Value $content
+            Set-Content -Path $file.PSPath -Value $updatedContent
+            Write-Output "Updated file: $file"
           }
+
+
 
 
 
