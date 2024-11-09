@@ -22,14 +22,30 @@ jobs:
         run: choco install nuget.commandline
       
       - name: Increment version in AssemblyInfo.cs
-        shell: bash
+        shell: pwsh
         run: |
-          find . -name "AssemblyInfo.cs" | while IFS= read -r file; do
-          # Increment the build number in AssemblyVersion
-          sed -i -E 's/(AssemblyVersion\("[0-9]+\.[0-9]+\.)([0-9]+)(\.[0-9]+"\))/echo "\1$((\2 + 1))\3"/ge' "$file"
-          # Increment the build number in AssemblyFileVersion
-          sed -i -E 's/(AssemblyFileVersion\("[0-9]+\.[0-9]+\.)([0-9]+)(\.[0-9]+"\))/echo "\1$((\2 + 1))\3"/ge' "$file"
-          done
+          $files = Get-ChildItem -Path . -Filter AssemblyInfo.cs -Recurse
+          foreach ($file in $files) {
+            $content = Get-Content $file.PSPath
+
+            # Increment the build number in AssemblyVersion
+            $content = $content -replace 'AssemblyVersion\("(\d+\.\d+\.)(\d+)(\.\d+)"\)', {
+              param($all, $majorMinor, $build, $revision)
+              $newBuild = [int]$build + 1
+              "AssemblyVersion(`"$majorMinor$newBuild$revision`")"
+            }
+
+            # Increment the build number in AssemblyFileVersion
+            $content = $content -replace 'AssemblyFileVersion\("(\d+\.\d+\.)(\d+)(\.\d+)"\)', {
+              param($all, $majorMinor, $build, $revision)
+              $newBuild = [int]$build + 1
+              "AssemblyFileVersion(`"$majorMinor$newBuild$revision`")"
+            }
+
+            # Save the modified content back to the file
+            Set-Content -Path $file.PSPath -Value $content
+          }
+
 
 
       - name: Commit version increment
