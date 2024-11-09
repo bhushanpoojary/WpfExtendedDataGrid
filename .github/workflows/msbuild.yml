@@ -24,7 +24,7 @@ jobs:
       - name: Increment version in AssemblyInfo.cs
         shell: bash
         run: |
-          for file in $(find . -name "AssemblyInfo.cs"); do
+          find . -name "AssemblyInfo.cs" | while IFS= read -r file; do
           sed -i -E 's/AssemblyVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
           sed -i -E 's/AssemblyFileVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyFileVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
           done
