@@ -22,29 +22,11 @@ jobs:
         run: choco install nuget.commandline
       
       - name: Increment version in AssemblyInfo.cs
-        shell: pwsh
         run: |
-          $files = Get-ChildItem -Path . -Filter AssemblyInfo.cs -Recurse
-          foreach ($file in $files) {
-            $content = Get-Content $file.PSPath
-
-            # Increment AssemblyVersion
-            $content = $content -replace 'AssemblyVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
-              param($all, $prefix, $revision)
-              $newRevision = [int]$revision + 1
-              "AssemblyVersion(`"$prefix$newRevision`")"
-            }
-
-            # Increment AssemblyFileVersion
-            $content = $content -replace 'AssemblyFileVersion\("(\d+\.\d+\.\d+\.)(\d+)"\)', {
-              param($all, $prefix, $revision)
-              $newRevision = [int]$revision + 1
-              "AssemblyFileVersion(`"$prefix$newRevision`")"
-            }
-
-            # Save the modified content back to the file
-            Set-Content -Path $file.PSPath -Value $content
-          }
+          for file in $(find . -name "AssemblyInfo.cs"); do
+          sed -i -E 's/AssemblyVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
+          sed -i -E 's/AssemblyFileVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyFileVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
+          done
 
       - name: Commit version increment
         env:
