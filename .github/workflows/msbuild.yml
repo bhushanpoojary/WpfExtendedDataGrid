@@ -25,9 +25,12 @@ jobs:
         shell: bash
         run: |
           find . -name "AssemblyInfo.cs" | while IFS= read -r file; do
-          sed -i -E 's/AssemblyVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
-          sed -i -E 's/AssemblyFileVersion\("([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)"\)/echo "AssemblyFileVersion(\\"\1$((\2 + 1))\\")"/ge' "$file"
+          # Increment the build number in AssemblyVersion
+          sed -i -E 's/(AssemblyVersion\("[0-9]+\.[0-9]+\.)([0-9]+)(\.[0-9]+"\))/echo "\1$((\2 + 1))\3"/ge' "$file"
+          # Increment the build number in AssemblyFileVersion
+          sed -i -E 's/(AssemblyFileVersion\("[0-9]+\.[0-9]+\.)([0-9]+)(\.[0-9]+"\))/echo "\1$((\2 + 1))\3"/ge' "$file"
           done
+
 
       - name: Commit version increment
         env:
