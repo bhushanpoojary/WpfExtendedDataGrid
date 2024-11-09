@@ -25,6 +25,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bhushanpoojary/WpfExtendedDataGrid</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bhushanpoojary/WpfExtendedDataGrid</RepositoryUrl>
+    <PackageReadmeFile>../../README.md</PackageReadmeFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
