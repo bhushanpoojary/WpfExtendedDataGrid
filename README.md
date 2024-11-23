@@ -1,5 +1,5 @@
 # WpfExtendedDataGrid
-WPF Extended Datagrid
+WPF Extended Datagrid (This grid extends WPF provided DataGrid as derived class)
 
 ## This grid has features like:
 
